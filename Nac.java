@@ -4,11 +4,11 @@ import java.text.DecimalFormat;
 
 public class Nac {
 
-	//declarações globais
+	//declaraÃ§Ãµes globais
 	
 	static int[] indCD=new int[3];
 	
-	static String[] campoP=new String[] {"Cor","Preço","Volume (m³)","Peso (KG)"};	
+	static String[] campoP=new String[] {"Cor","PreÃ§o","Volume (mÂ³)","Peso (KG)"};	
 	static double[][] prod=new double[][] {
 		{1,15,0.012,3},
 		{2,16,0.010,2.4},
@@ -25,11 +25,11 @@ public class Nac {
 	
 	static String[] campoC=new String[] {"Tipo","Nome","Latitude","Longitude"};
 	static String[][] listaCD=new String[][] {
-		{"CD","São Paulo","-23.5489","-46.6388"},
+		{"CD","SÃ£o Paulo","-23.5489","-46.6388"},
 		{"CD","Porto Alegre","-30.0277","-51.2287"},
 		{"CD","Salvador","-12.9704","-38.5124"},
 		{"CD","Recife","-8.05428","-34.8813"},
-		{"CD","Goiânia","-16.6799","-49.255"},
+		{"CD","GoiÃ¢nia","-16.6799","-49.255"},
 		{"CD","Manaus","-3.10719","-60.0261"}
 	};
 	
@@ -41,7 +41,7 @@ public class Nac {
 		
 		System.out.println("-----VALOR DOS PRODUTOS------");
 		for (int i=0;i<valor.length;i++) {
-			System.out.println("O valor dos produtos do cliente "+listaVenda[i][1]+" é de R$"+(valor[i]));
+			System.out.println("O valor dos produtos do cliente "+listaVenda[i][1]+" Ã© de R$"+(valor[i]));
 		}
 		System.out.println("");
 		
@@ -51,7 +51,7 @@ public class Nac {
 		
 		System.out.println("------FRETES-------");
 		for (int i=0;i<frete.length;i++){
-			System.out.println("Frete para "+listaVenda[i][1]+" é de R$"+fm.format(frete[i]));
+			System.out.println("Frete para "+listaVenda[i][1]+" Ã© de R$"+fm.format(frete[i]));
 		}
 		System.out.println("");
 		
@@ -62,9 +62,9 @@ public class Nac {
 		
 	}
 	
-	//Métdos
+	//MÃ©tdos
 	
-	//Método para calcular o peso da carga
+	//MÃ©todo para calcular o peso da carga
 	static double[] peso(double[][] prod, String[][] listaVenda){
 		
 		double[] peso=new double[3];
@@ -83,7 +83,7 @@ public class Nac {
 		
 	}
 	
-	//Método para calculara o valor da venda
+	//MÃ©todo para calculara o valor da venda
 	static double[] valorPedido(double[][] prod, String[][] listaVenda){
 	
 	double[] valor=new double[3];
@@ -92,15 +92,15 @@ public class Nac {
 	for (int i=0;i<valor.length;i++) {
 		ind=0;
 		for (int j=4;j<7;j++) {
-			valor[i]=prod[ind][1]*Double.parseDouble(listaVenda[i][j]);
+			valor[i]+=prod[ind][1]*Double.parseDouble(listaVenda[i][j]);
 			ind++;
 		}					
 	}
 	
 	return valor;
-	}//fim do método
+	}//fim do mÃ©todo
 	
-	//Método Para calcular o valor do frete
+	//MÃ©todo Para calcular o valor do frete
 	static double[] valorFrete() {
 		
 		double retorno[]=calcDist(listaCD,listaVenda);
@@ -120,10 +120,10 @@ public class Nac {
 		}//fim do for
 		
 		return retorno;
-	}//fim do método
+	}//fim do mÃ©todo
 	
-	//Calculo da conversão lat/long para KM
-	//VERIFICAÇÃO QUAL CD É MAIS PRÓXIMO
+	//Calculo da conversÃ£o lat/long para KM
+	//VERIFICAÃ‡ÃƒO QUAL CD Ã‰ MAIS PRÃ“XIMO
 	static double[] calcDist(String[][] listaCD,String[][] listaVenda){
 		
 		double[] retorno=new double[3];
@@ -132,7 +132,7 @@ public class Nac {
 		//pegando a lat/long do cliente q fes o pedido
 		for (int i=0;i<listaVenda.length;i++) {
 			d=0;
-			//esse será usado para controlar a lista de centros de distribução
+			//esse serÃ¡ usado para controlar a lista de centros de distribuÃ§Ã£o
 			for (int j=0;j<listaCD.length;j++) {
 				
 				d=Math.sqrt(
@@ -155,9 +155,9 @@ public class Nac {
 		}//fim for externo
 				
 		return retorno;
-	}//fim do método
+	}//fim do mÃ©todo
 	
-	//Método para determinar o prazo de entrega
+	//MÃ©todo para determinar o prazo de entrega
 	static void prazoEntrega() {
 		
 		double[] km=calcDist(listaCD,listaVenda);
@@ -175,10 +175,10 @@ public class Nac {
 			
 			System.out.println("Venda para o cliente "+
 			listaVenda[i][1]+" Chegara em "+prazoD[i]+" dias.");
-			System.out.println("Entrega será feita pelo Centro de Distribuição de "+listaCD[indCD[i]][1]);
+			System.out.println("Entrega serÃ¡ feita pelo Centro de DistribuiÃ§Ã£o de "+listaCD[indCD[i]][1]);
 			System.out.println("");
 		}//fim for
 		
-	}//fim do método
+	}//fim do mÃ©todo
 	
 }
